@@ -1,12 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { CssBaseline } from "@mui/material"
+import { BaseLayout } from "./Layout/BaseLayout/inde"
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return <></>
+
+  return <>
+    <CssBaseline />
+    <BaseLayout appBarTitle="Buscador de Perfil">
+
+
+    </BaseLayout>
+  </>
 }
 
 export default App
