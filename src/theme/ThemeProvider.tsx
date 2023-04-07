@@ -1,15 +1,22 @@
 
-import { red } from '@mui/material/colors';
+import { teal } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+type ThemeProps = {
+    children:React.ReactNode;
+}
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: red[500],
+      main: teal[500],
     },
   },
 });
 
-function App() {
-  return <ThemeProvider theme={theme}>...</ThemeProvider>;
+export function Theme({children}: ThemeProps) {
+  return <ThemeProvider theme={theme}>
+
+
+  </ThemeProvider>;
 }
