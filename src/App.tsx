@@ -6,15 +6,18 @@ import { Theme } from "./theme/ThemeProvider"
 function App() {
 
 
-  return <>
-    <Theme>
-    <CssBaseline />
-    <BaseLayout appBarTitle="Buscador de Perfil">
+  return (
+
+    <>
+      <Theme>
+        <CssBaseline />
+        <BaseLayout appBarTitle="Buscador de Perfil">
 
 
-    </BaseLayout>
-    </Theme>
-  </>
+        </BaseLayout>
+      </Theme>
+    </>
+  )
 }
 
 export default App

@@ -1,7 +1,4 @@
-
-import { teal } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { dark } from '@mui/material/styles/createPalette';
 
 type ThemeProps = {
     children:React.ReactNode;
@@ -24,7 +21,7 @@ const theme = createTheme({
 
 export function Theme({children}: ThemeProps) {
   return <ThemeProvider theme={theme}>
-
+      {children}
 
   </ThemeProvider>;
 }
