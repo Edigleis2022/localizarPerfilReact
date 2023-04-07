@@ -1,5 +1,5 @@
 import { CssBaseline } from "@mui/material"
-import { BaseLayout } from "./Layout/BaseLayout/inde"
+import { BaseLayout } from "./Layout/BaseLayout"
 
 
 function App() {
