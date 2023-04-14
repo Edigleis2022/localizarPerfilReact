@@ -1,12 +1,24 @@
 import { Box, Button, CssBaseline, TextField, useAutocomplete } from "@mui/material"
 import { useQuery } from "@tanstack/react-query"
+import { useRef, useState } from "react"
 import { BaseLayout } from "./Layout/BaseLayout"
 import { Theme } from "./theme/ThemeProvider"
 
 
 function App() {
 
-//const {data, isLoading } = useQuery
+const [search, setSearch ] = useState("");
+//const inputRef = useRef.current
+const handleClick = ()=>{
+
+}
+
+/*const {data, isLoading } = useQuery({
+ queryKey:["user-github"],
+ queryFn:() => {
+  getUser(search);
+ },
+})*/
 
 
 
@@ -18,7 +30,7 @@ function App() {
         <CssBaseline />
         <BaseLayout appBarTitle="Buscador de Perfil">
           <TextField/>
-          <Button variant="contained">Buscar Perfil</Button>
+          <Button variant="contained" onClick={handleClick}>Buscar Perfil</Button>
 
         </BaseLayout>
       </Theme>
