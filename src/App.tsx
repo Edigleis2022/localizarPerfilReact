@@ -8,9 +8,9 @@ import { Theme } from "./theme/ThemeProvider"
 function App() {
 
 const [search, setSearch ] = useState("");
-//const inputRef = useRef.current
+//const inputRef = useRef(null)
 const handleClick = ()=>{
-
+//const username = inputRef.current
 }
 
 /*const {data, isLoading } = useQuery({
