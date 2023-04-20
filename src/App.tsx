@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, TextField, Typography, useAutocomplete } from "@mui/material"
+import { Avatar, Box, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, TextField, Typography, useAutocomplete } from "@mui/material"
 import { useQuery } from "@tanstack/react-query"
 import { useRef, useState } from "react"
 import { BaseLayout } from "./Layout/BaseLayout"
@@ -31,15 +31,14 @@ function App() {
         <BaseLayout appBarTitle="Buscador de Perfil">
           <Card sx={{ maxWidth: 345 }}>
             <CardMedia
-
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
             />
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
                 Git Hub
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over 6,000
-                species, ranging across all continents except Antarctica
+                
               </Typography>
             </CardContent>
             <CardActions>
