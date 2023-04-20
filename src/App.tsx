@@ -10,12 +10,12 @@ function App() {
   const [user, setUserName] = useState("");
   //const inputRef = useRef(null)
   const handleSubmit = (event:FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    const form = event.currentTarget
     const inputUserName = event.currentTarget.useName
   }
 
   
-
-
 
   return (
 
@@ -37,10 +37,12 @@ function App() {
               </Typography>
             </CardContent>
             <CardActions onSubmit={handleSubmit} >
+              <Box sx={{ justifyContent:"center", }} >
               <TextField
                 label="Nome do Perfil" fullWidth
                 name='userName'/>
               <Button variant="contained"  type="submit" >Buscar Perfil</Button>
+              </Box>
             </CardActions>
           </Card>
 
