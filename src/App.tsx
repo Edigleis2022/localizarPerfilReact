@@ -6,6 +6,24 @@ import { UserProps } from "./Types/users"
 
 function App() {
 
+  const loadUser = async(userName: String) => {
+    const res = await fetch(`http://api.github.com/users/${userName}`)
+    
+    const data  = await res.json();
+
+    const {avatar_url, login, location, followers, following} = data
+
+    const userData: UserProps = { 
+        avatar_url,
+        login,
+        location, 
+        followers,
+        following,
+    };
+    
+    setUser(userData);
+
+}
   
 
   const [user, setUserName] = useState("");
@@ -19,7 +37,7 @@ function App() {
     setUserName(await getUser(inputUserName))
     setLoading(false)
   }
-
+ 
 
 
   return (
@@ -33,7 +51,7 @@ function App() {
                    justifyContent: "center",
           }} >
             <Card sx={{ maxWidth: 345 }}>
-                <Avatar src={avatar_url} />
+                <Avatar src={user.avatar_url} />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                   Git Hub
