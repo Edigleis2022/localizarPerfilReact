@@ -1,12 +1,22 @@
 import { Avatar, Box, Button, Card, CardActions, CardContent, CssBaseline, TextField, Typography} from "@mui/material"
-import { FormEvent, useState } from "react"
+import { Children, FormEvent, useState } from "react"
 import { BaseLayout } from "./Layout/BaseLayout"
 import { Theme } from "./theme/ThemeProvider"
 import { UserProps } from "./Types/users"
 
 function App() {
 
-  
+  const [user,setUser] = useState<UserProps>(userData);
+  const[isLoading, setLoading] = useState(false)
+
+  const userData: UserProps = { 
+    avatar_url: '',
+    login: '',
+    location: '', 
+    followers: 0,
+    following: 0
+};
+
 
   const loadUser = async(userName: String) => {
     const res = await fetch(`http://api.github.com/users/${userName}`)
@@ -15,26 +25,19 @@ function App() {
 
     const {avatar_url, login, location, followers, following} = data
 
-    const userData: UserProps = { 
-        avatar_url,
-        login,
-        location, 
-        followers,
-        following,
-    };
-
+   
+    setUser(userData);
 }
   
 
-  const [user,setUserName] = useState("");
-  const[isLoading, setLoading] = useState(false)
+
   
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const form = event.currentTarget
     const inputUserName: HTMLInputElement = form.userName;
     setLoading(true)
-    setUserName(await getUser(inputUserName))
+    setUser(await loadUser(inputUserName.value))
     setLoading(false)
   }
  
@@ -53,18 +56,18 @@ function App() {
             <Card sx={{ maxWidth: 345 }}>
                 <Avatar src={user.avatar_url} />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom >
                   Git Hub
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-
+                <Typography >
+                
                 </Typography>
               </CardContent>
-              <CardActions onSubmit={handleSubmit} >
-                <Box sx={{ justifyContent: "center", }} >
-                  <TextField
+              <CardActions  >
+                <Box sx={{ justifyContent: "center", }}  >
+                  <TextField 
                     label="Nome do Perfil" fullWidth
-                    name='userName' />
+                    name='userName' onSubmit={handleSubmit} />
                   <Button variant="contained" type="submit" >Buscar Perfil</Button>
                 </Box>
               </CardActions>
@@ -80,7 +83,5 @@ function App() {
 export default App
 
 
-function getUser(inputUserName: HTMLInputElement): import("react").SetStateAction<string> | PromiseLike<import("react").SetStateAction<string>> {
-  throw new Error("Function not implemented.")
-}
+
 
