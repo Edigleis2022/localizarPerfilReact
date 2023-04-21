@@ -1,10 +1,12 @@
-import { Avatar, Box, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, TextField, Typography, useAutocomplete } from "@mui/material"
+import { Avatar, Box, Button, Card, CardActions, CardContent, CssBaseline, TextField, Typography} from "@mui/material"
 import { FormEvent, useState } from "react"
 import { BaseLayout } from "./Layout/BaseLayout"
 import { Theme } from "./theme/ThemeProvider"
-import { UserProps } from "./Types/users" 
+import { UserProps } from "./Types/users"
 
 function App() {
+
+  
 
   const loadUser = async(userName: String) => {
     const res = await fetch(`http://api.github.com/users/${userName}`)
@@ -20,13 +22,11 @@ function App() {
         followers,
         following,
     };
-    
-    setUser(userData);
 
 }
   
 
-  const [user, setUserName] = useState("");
+  const [user,setUserName] = useState("");
   const[isLoading, setLoading] = useState(false)
   
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -78,6 +78,8 @@ function App() {
 }
 
 export default App
+
+
 function getUser(inputUserName: HTMLInputElement): import("react").SetStateAction<string> | PromiseLike<import("react").SetStateAction<string>> {
   throw new Error("Function not implemented.")
 }
