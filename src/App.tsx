@@ -1,46 +1,48 @@
-import { Avatar, Box, Button, Card, CardActions, CardContent, CssBaseline, TextField, Typography} from "@mui/material"
-import { Children, FormEvent, useState } from "react"
+import { Avatar, Box, Button, Card, CardActions, CardContent, CssBaseline, TextField, TextFieldProps, Typography } from "@mui/material"
+import { useEffect, useState } from "react"
 import { BaseLayout } from "./Layout/BaseLayout"
 import { Theme } from "./theme/ThemeProvider"
 import { UserProps } from "./Types/users"
+import Form from "./components/Form"
 
 function App() {
 
-  const [user,setUser] = useState<UserProps>(userData);
-  const[isLoading, setLoading] = useState(false)
-
-  const userData: UserProps = { 
+  const userData: UserProps = {
     avatar_url: '',
     login: '',
-    location: '', 
+    location: '',
     followers: 0,
     following: 0
-};
+  };
+
+  const [user, setUser] = useState<UserProps>(userData);
+  const [isLoading, setLoading] = useState(false)
+
+  useEffect(() => {
+    const loadUser = async (userName: String) => {
+      const res = await fetch(`http://api.github.com/users/edigleis2022`)
+
+      const data = await res.json();
+
+      const { avatar_url, login, location, followers, following } = data
 
 
-  const loadUser = async(userName: String) => {
-    const res = await fetch(`http://api.github.com/users/${userName}`)
-    
-    const data  = await res.json();
+      setUser(userData);
+    }
 
-    const {avatar_url, login, location, followers, following} = data
-
-   
-    setUser(userData);
-}
-  
+  }, [])
 
 
-  
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const form = event.currentTarget
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const form = e.currentTarget
     const inputUserName: HTMLInputElement = form.userName;
     setLoading(true)
     setUser(await loadUser(inputUserName.value))
     setLoading(false)
   }
- 
+
 
 
   return (
@@ -51,25 +53,29 @@ function App() {
         <CssBaseline />
         <BaseLayout appBarTitle="Buscador de Perfil">
           <Box sx={{
-                   justifyContent: "center",
+            justifyContent: "center",
           }} >
             <Card sx={{ maxWidth: 345 }}>
-                <Avatar src={user.avatar_url} />
+              <Avatar src={user.avatar_url} />
               <CardContent>
                 <Typography gutterBottom >
                   Git Hub
                 </Typography>
                 <Typography >
-                
+
                 </Typography>
               </CardContent>
               <CardActions  >
-                <Box sx={{ justifyContent: "center", }}  >
-                  <TextField 
-                    label="Nome do Perfil" fullWidth
-                    name='userName' onSubmit={handleSubmit} />
-                  <Button variant="contained" type="submit" >Buscar Perfil</Button>
-                </Box>
+                <form>
+                  <Box sx={{ justifyContent: "center", }}  >
+                    <TextField
+                      label="Nome do Perfil" fullWidth
+                      name='userName' onSubmit={handleSubmit} />
+                    <Button
+                      variant="contained"
+                      type="submit" >Buscar Perfil</Button>
+                  </Box>
+                </form>
               </CardActions>
             </Card>
           </Box>
