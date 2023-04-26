@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { BaseLayout } from "./Layout/BaseLayout"
 import { Theme } from "./theme/ThemeProvider"
 import { UserProps } from "./Types/users"
-import Form from "./components/Form"
+import ActionsCard from "./components/CardActions/card"
 
 function App() {
 
@@ -52,8 +52,11 @@ function App() {
       <Theme>
         <CssBaseline />
         <BaseLayout appBarTitle="Buscador de Perfil">
-          <Box sx={{
-            justifyContent: "center",
+         
+        </BaseLayout>
+      </Theme>
+      <Box sx={{
+            justifyContent: "center", alignItems: "center"
           }} >
             <Card sx={{ maxWidth: 345 }}>
               <Avatar src={user.avatar_url} />
@@ -65,23 +68,10 @@ function App() {
 
                 </Typography>
               </CardContent>
-              <CardActions  >
-                <form>
-                  <Box sx={{ justifyContent: "center", }}  >
-                    <TextField
-                      label="Nome do Perfil" fullWidth
-                      name='userName' onSubmit={handleSubmit} />
-                    <Button
-                      variant="contained"
-                      type="submit" >Buscar Perfil</Button>
-                  </Box>
-                </form>
-              </CardActions>
+              
             </Card>
           </Box>
-        </BaseLayout>
-      </Theme>
-
+          
     </>
   )
 }
