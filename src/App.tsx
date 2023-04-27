@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { BaseLayout } from "./Layout/BaseLayout"
 import { Theme } from "./theme/ThemeProvider"
 import { UserProps } from "./Types/users"
-import ActionsCard from "./components/CardActions/card"
+import CardAction from "./components/CardActions/card"
 
 function App() {
 
@@ -16,7 +16,7 @@ function App() {
   };
 
   const [user, setUser] = useState<UserProps>(userData);
-  const [isLoading, setLoading] = useState(false)
+  
 
   useEffect(() => {
     const loadUser = async (userName: String) => {
@@ -26,24 +26,10 @@ function App() {
 
       const { avatar_url, login, location, followers, following } = data
 
-
       setUser(userData);
     }
 
   }, [])
-
-
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    const form = e.currentTarget
-    const inputUserName: HTMLInputElement = form.userName;
-    setLoading(true)
-    setUser(await loadUser(inputUserName.value))
-    setLoading(false)
-  }
-
-
 
   return (
 
@@ -65,12 +51,10 @@ function App() {
                   Git Hub
                 </Typography>
                 <Typography >
-
+                    
                 </Typography>
               </CardContent>
-              
-            </Card>
-          </Box>
+      </Box>
           
     </>
   )
